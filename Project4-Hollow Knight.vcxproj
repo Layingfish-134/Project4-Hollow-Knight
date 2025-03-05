@@ -129,12 +129,14 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="atlas.h" />
+    <ClInclude Include="collisionlayer.h" />
     <ClInclude Include="resourcesmanager.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="collisionmanager.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="resourcesmanager.cpp" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include"resourcesmanager.h"
-
+#include"util.h"
 ResourcesManager*  ResourcesManager::manager = nullptr;
 
 ResourcesManager*  ResourcesManager::instance() 
@@ -84,7 +84,7 @@ void ResourcesManager::load()
 	{
 		IMAGE* img = new IMAGE;
 		loadimage(img,info.path);
-		if (check_image_vaild(img))
+		if (!check_image_vaild(img))
 			throw info.path;
 		image_pool[info.id] = img;
 	}
@@ -96,7 +96,7 @@ void ResourcesManager::load()
 		for (int i = 0; i < atlas->get_size(); i++)
 		{
 			IMAGE* img = atlas->get_image(i);
-			if (check_image_vaild(img))
+			if (!check_image_vaild(img))
 				throw info.path;
 		}
 		atlas_pool[info.id] = atlas;
@@ -126,4 +126,90 @@ void ResourcesManager::load()
 	flip_atlas("enemy_vfx_dash_in_air_left", "enemy_vfx_dash_in_air_right");
 	flip_atlas("enemy_vfx_dash_on_floor_left", "enemy_vfx_dash_on_floor_right");
 
+
+	load_audio(_T(R"(resources\audio\barb_break.mp3)"), _T("barb_break"));
+	load_audio(_T(R"(resources\audio\bgm.mp3)"), _T("begm"));
+	load_audio(_T(R"(resources\audio\bullet_time.mp3)"), _T("buller_time"));
+
+	load_audio(_T(R"(resources\audio\enemy_dash.mp3)"), _T("enemy_dash"));
+	load_audio(_T(R"(resources\audio\enemy_hurt_1.mp3)"), _T("enemy_hurt_1"));
+	load_audio(_T(R"(resources\audio\enemy_hurt_2.mp3)"), _T("enemy_hurt_2"));
+	load_audio(_T(R"(resources\audio\enemy_hurt_3.mp3)"), _T("enemy_hurt_3"));
+	load_audio(_T(R"(resources\audio\enemy_run.mp3)"), _T("enemy_run"));
+	load_audio(_T(R"(resources\audio\enemy_throw_barbs.mp3)"), _T("enemy_throw_barbs"));
+	load_audio(_T(R"(resources\audio\enemy_throw_silk.mp3)"), _T("enemy_throw_silk"));
+	load_audio(_T(R"(resources\audio\enemy_throw_sword.mp3)"), _T("enemy_throw_sword"));
+
+	load_audio(_T(R"(resources\audio\player_attack_1.mp3)"), _T("player_attack_1"));
+	load_audio(_T(R"(resources\audio\player_attack_2.mp3)"), _T("player_attack_2"));
+	load_audio(_T(R"(resources\audio\player_attack_3.mp3)"), _T("player_attack_3"));
+	load_audio(_T(R"(resources\audio\player_dead.mp3)"), _T("player_dead"));
+	load_audio(_T(R"(resources\audio\player_hurt.mp3)"), _T("player_hurt"));
+	load_audio(_T(R"(resources\audio\player_jump.mp3)"), _T("player_jump"));
+	load_audio(_T(R"(resources\audio\player_land.mp3)"), _T("player_land"));
+	load_audio(_T(R"(resources\audio\player_roll.mp3)"), _T("player_roll"));
+	load_audio(_T(R"(resources\audio\player_run.mp3)"), _T("player_run"));
+
+
 }
+
+Atlas* ResourcesManager::find_atlas(const std::string& id) const
+{
+	const auto& it = atlas_pool.find(id);
+	if (it == atlas_pool.end())
+		return nullptr;
+	return it->second;
+
+}
+IMAGE* ResourcesManager::find_image(const std::string& id)const
+{
+	const auto& it = image_pool.find(id);
+	if (it == image_pool.end())
+		return nullptr;
+	return it->second;
+}
+
+void ResourcesManager::flip_image(IMAGE* src_image, IMAGE* dst_image, int num_h )
+{
+	int w = src_image->getwidth();
+	int h = src_image->getheight();
+	Resize(dst_image, w, h);
+	DWORD* src_buffer = GetImageBuffer(src_image);
+	DWORD* dst_buffer = GetImageBuffer(dst_image);
+	int frame_width = w / num_h;
+	for (int i = 0; i < num_h; i++)
+	{
+		int x_left = frame_width * i;
+		int x_right = frame_width * (i + 1);
+		for (int y = 0; y < h; y++)
+		{
+			for (int x = x_left; x < x_right; x++)
+			{
+				int idx_src = y * w + x;
+				int idx_dst = y * w + x_right - (x - x_left);
+				dst_buffer[idx_dst] = src_buffer[idx_src];
+			}
+		}
+	}
+	return;
+}
+void ResourcesManager::flip_image(const std::string& src_id, const std::string& dst_id, int num_h )
+{
+	IMAGE* dst_image = new IMAGE;
+	flip_image(image_pool[src_id], dst_image, num_h);
+	image_pool[dst_id] = dst_image;
+}
+void ResourcesManager::flip_atlas(const std::string& src_id, const std::string& dst_id)
+{
+	Atlas* src_atlas = atlas_pool[src_id];
+	Atlas* dst_atlas = new Atlas;
+	for (int i = 0; i < src_atlas->get_size(); i++)
+	{
+		IMAGE flipped_image;
+		flip_image(src_atlas->get_image(i), &flipped_image);
+		dst_atlas->add_image(flipped_image);
+	}
+
+	atlas_pool[dst_id] = dst_atlas;
+}
+
