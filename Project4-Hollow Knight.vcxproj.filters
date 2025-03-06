@@ -16,6 +16,9 @@
     <Filter Include="头文件\Tools">
       <UniqueIdentifier>{60fd797d-8edf-4de4-9c1e-972e2fa0a41c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Collision">
+      <UniqueIdentifier>{d86761d2-2eee-4562-a905-7187fa2444ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2.h">
@@ -37,6 +40,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="collisionlayer.h">
+      <Filter>头文件\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="collisionmanager.h">
+      <Filter>头文件\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="statenode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="charactor.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,8 +62,14 @@
     <ClCompile Include="resourcesmanager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="collisionmanager.h">
-      <Filter>头文件</Filter>
+    <ClCompile Include="collisionmanager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="collisionbox.h">
+      <Filter>头文件\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="statemachine.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

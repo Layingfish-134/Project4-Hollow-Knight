@@ -129,16 +129,22 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="atlas.h" />
+    <ClInclude Include="charactor.h" />
     <ClInclude Include="collisionlayer.h" />
+    <ClInclude Include="collisionmanager.h" />
     <ClInclude Include="resourcesmanager.h" />
+    <ClInclude Include="statemachine.h" />
+    <ClInclude Include="statenode.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="collisionmanager.h" />
+    <ClCompile Include="collisionbox.h" />
+    <ClCompile Include="collisionmanager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="resourcesmanager.cpp" />
+    <ClCompile Include="statemachine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

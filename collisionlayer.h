@@ -1,5 +1,5 @@
 #pragma once
-enum class CollsionLayer
+enum class CollisionLayer
 {
 	None,
 	Player,
