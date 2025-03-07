@@ -132,6 +132,7 @@
     <ClInclude Include="charactor.h" />
     <ClInclude Include="collisionlayer.h" />
     <ClInclude Include="collisionmanager.h" />
+    <ClInclude Include="player.h" />
     <ClInclude Include="resourcesmanager.h" />
     <ClInclude Include="statemachine.h" />
     <ClInclude Include="statenode.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="charactor.cpp" />
     <ClCompile Include="collisionbox.h" />
     <ClCompile Include="collisionmanager.cpp" />
     <ClCompile Include="main.cpp" />

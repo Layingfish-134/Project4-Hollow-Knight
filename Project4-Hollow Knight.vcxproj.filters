@@ -19,6 +19,9 @@
     <Filter Include="头文件\Collision">
       <UniqueIdentifier>{d86761d2-2eee-4562-a905-7187fa2444ad}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\manager">
+      <UniqueIdentifier>{27ac1404-2001-4609-808a-12a55fc983fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2.h">
@@ -54,15 +57,12 @@
     <ClInclude Include="charactor.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="resourcesmanager.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="collisionmanager.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="collisionbox.h">
@@ -70,6 +70,15 @@
     </ClCompile>
     <ClCompile Include="statemachine.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="charactor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="resourcesmanager.cpp">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="collisionmanager.cpp">
+      <Filter>源文件\manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
