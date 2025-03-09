@@ -98,5 +98,8 @@
     <ClCompile Include="charactormanager.cpp">
       <Filter>源文件\manager</Filter>
     </ClCompile>
+    <ClCompile Include="player-state-nodes.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

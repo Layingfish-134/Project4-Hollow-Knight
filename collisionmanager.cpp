@@ -4,6 +4,8 @@
 #include<algorithm>
 #include<graphics.h>
 
+CollisionManager* CollisionManager::collision_manager = nullptr;
+
 CollisionManager* CollisionManager::instance()
 {
 	if (!collision_manager)

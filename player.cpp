@@ -1,12 +1,15 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include"player.h"
 #include"resourcesmanager.h"
+#include"player_state_nodes.h"
 
 #include<cmath>
 
 Player::Player() {
 	is_facing_left = false;
-	position = { 250,200 };
+	//position = { 250,200 };
+	position = { 250,400 };
+	velocity = { 0,0 };
 	logic_height = 120;
 
 	hit_box->set_size({ 150,150 });
@@ -41,16 +44,16 @@ Player::Player() {
 		}
 	);
 	{
-		AnimationGroup* animation_attack = animation_pool["attack"];
+		AnimationGroup& animation_attack = animation_pool["attack"];
 
-		Animation& animation_attack_left = animation_attack->left;
+		Animation& animation_attack_left = animation_attack.left;
 		animation_attack_left.set_interval(0.05f);
 		animation_attack_left.set_loop(false);
 		animation_attack_left.set_anchor_mode(Animation::AnchorMode::Bottomcentered);
 		animation_attack_left.add_frame(ResourcesManager::
 			instance()->find_image("player_attack_left"), 5);
 
-		Animation& animation_attack_right = animation_attack->right;
+		Animation& animation_attack_right = animation_attack.right;
 		animation_attack_right.set_interval(0.05f);
 		animation_attack_right.set_loop(false);
 		animation_attack_right.set_anchor_mode(Animation::AnchorMode::Bottomcentered);
@@ -58,7 +61,7 @@ Player::Player() {
 			instance()->find_image("player_attack_right"), 5);
 	}
 	{
-		AnimationGroup* animation_dead = animation_pool["dead"];
+		AnimationGroup* animation_dead = &animation_pool["dead"];
 		Animation& animation_dead_left = animation_dead->left;
 		animation_dead_left.set_interval(0.1f);
 		animation_dead_left.set_loop(false);
@@ -74,7 +77,7 @@ Player::Player() {
 			instance()->find_image("player_dead_right"), 6);
 	}
 	{
-		AnimationGroup* animation_fall = animation_pool["fall"];
+		AnimationGroup* animation_fall = &animation_pool["fall"];
 		Animation& animation_fall_left = animation_fall->left;
 		animation_fall_left.set_interval(0.15f);
 		animation_fall_left.set_loop(true);
@@ -90,7 +93,7 @@ Player::Player() {
 			instance()->find_image("player_fall_right"), 5);
 	}
 	{
-		AnimationGroup* animation_idle = animation_pool["idle"];
+		AnimationGroup* animation_idle = &animation_pool["idle"];
 		Animation& animation_idle_left = animation_idle->left;
 		animation_idle_left.set_interval(0.15f);
 		animation_idle_left.set_loop(true);
@@ -106,7 +109,7 @@ Player::Player() {
 			instance()->find_image("player_idle_right"), 5);
 	}
 	{
-		AnimationGroup* animation_jump = animation_pool["jump"];
+		AnimationGroup* animation_jump = &animation_pool["jump"];
 		Animation& animation_jump_left = animation_jump->left;
 		animation_jump_left.set_interval(0.15f);
 		animation_jump_left.set_loop(false);
@@ -122,7 +125,7 @@ Player::Player() {
 			instance()->find_image("player_jump_right"), 5);
 	}
 	{
-		AnimationGroup* animation_roll = animation_pool["roll"];
+		AnimationGroup* animation_roll = &animation_pool["roll"];
 		Animation& animation_roll_left = animation_roll->left;
 		animation_roll_left.set_interval(0.05f);
 		animation_roll_left.set_loop(false);
@@ -138,7 +141,7 @@ Player::Player() {
 			instance()->find_image("player_roll_right"), 7);
 	}
 	{
-		AnimationGroup* animation_run = animation_pool["run"];
+		AnimationGroup* animation_run = &animation_pool["run"];
 		Animation& animation_run_left = animation_run->left;
 		animation_run_left.set_interval(0.075f);
 		animation_run_left.set_loop(true);
@@ -201,7 +204,15 @@ Player::Player() {
 	);
 
 	{
-		//状态机节点状态初始化
+		state_machine.register_state("attack", new PlayerAttackState);
+		state_machine.register_state("idle", new PlayerIdleState);
+		state_machine.register_state("run", new PlayerRunState);
+		state_machine.register_state("jump", new PlayerJumpState);
+		state_machine.register_state("roll", new PlayerRollState);
+		state_machine.register_state("dead", new PlayerDeadState);
+		state_machine.register_state("fall", new PlayerFallState);
+
+		state_machine.on_entry("idle");
 	}
 }
 
@@ -323,15 +334,15 @@ void Player::on_jump()
 {
 	velocity.y -= SPEED_JUMP;
 	is_jump_vfx_visible = true;
-	animation_jump_vfx.reset();
 	animation_jump_vfx.set_position(position);
+	animation_jump_vfx.reset();
 
 }
 void Player::on_land()
 {
 	is_land_vfx_visible = true;
-	animation_land_vfx.reset();
 	animation_land_vfx.set_position(position);
+	animation_land_vfx.reset();
 }
 void Player::on_roll()
 {

@@ -148,6 +148,7 @@
     <ClCompile Include="collisionbox.h" />
     <ClCompile Include="collisionmanager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="player-state-nodes.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="resourcesmanager.cpp" />
     <ClCompile Include="statemachine.cpp" />

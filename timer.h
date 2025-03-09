@@ -46,12 +46,12 @@ public:
 
 		if (pass_time >= wait_time)
 		{
-			
-			if (!one_shot || (one_shot && !is_shotted)&&on_timeout)
+			bool can_shot = !one_shot || (one_shot && !is_shotted) && on_timeout;
+			is_shotted = true;
+			if (can_shot)
 			{
 				on_timeout();
 			}
-			is_shotted = true;
 			pass_time -= wait_time;
 		}
 	}

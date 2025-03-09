@@ -1,7 +1,6 @@
 #pragma once
 #include"Vector2.h"
 #include"collisionlayer.h"
-#include"collisionmanager.h"
 
 #include<functional>
 

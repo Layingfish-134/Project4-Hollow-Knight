@@ -50,7 +50,7 @@ protected:
 	CollisionBox* hit_box = nullptr;//攻击碰撞箱
 	CollisionBox* hurt_box = nullptr;//受击碰撞箱
 	AnimationGroup* current_animation=nullptr;
-	std::unordered_map<std::string, AnimationGroup*> animation_pool;
+	std::unordered_map<std::string, AnimationGroup> animation_pool;
 public:
 	int get_hp()const
 	{
@@ -99,7 +99,7 @@ public:
 
 	bool is_on_floor()const
 	{
-		return position.y >= FLOOR_Y;
+		return (position.y >= FLOOR_Y);
 	}
 
 	float get_floor_y()const

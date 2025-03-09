@@ -5,7 +5,7 @@
 #include"timer.h"
 
 #include<functional>
-
+#include<iostream>
 class Animation
 {
 public:
@@ -15,10 +15,11 @@ public:
 		timer.set_callback([&]()
 			{
 				idx_frame++;
+				std::cout << "动画帧更新调用" << std::endl;
 				if (idx_frame >= frame_list.size())
 				{
 					idx_frame = is_loop ? 0 : frame_list.size() - 1;
-					if (!is_loop && idx_frame == frame_list.size() - 1)
+					if (!is_loop && on_finished)
 					{
 						on_finished();
 					}
@@ -26,7 +27,7 @@ public:
 			}
 		);
 	}
-	~Animation();
+	~Animation()=default;
 public:
 	enum class AnchorMode
 	{
@@ -115,6 +116,7 @@ public:
 		dst_rect.h = frame.src_rect.h;
 
 		putimage_ex(frame.img, &dst_rect, &frame.src_rect);
+		//std::cout << idx_frame << std::endl;
 	}
 private:
 	struct Frame

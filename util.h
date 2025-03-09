@@ -39,3 +39,8 @@ inline void stop_audio(LPCTSTR id)
 	_stprintf_s(str_cmd, _T("stop %s"), id);
 	mciSendString(str_cmd, NULL, 0, NULL);
 }
+
+inline int range_random(int min_ran, int max_ran)
+{
+	return min_ran + rand() % (max_ran - min_ran + 1);
+}

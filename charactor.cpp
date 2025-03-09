@@ -7,7 +7,6 @@ Charactor::Charactor()
 	hit_box = CollisionManager::instance()->create_collision_box();
 	hurt_box = CollisionManager::instance()->create_collision_box();
 
-	current_animation = new AnimationGroup;
 
 	timer_invulnerable_status.set_wait_time(1.0f);
 	timer_invulnerable_status.set_oneshot(true);
@@ -52,10 +51,13 @@ void Charactor::on_update(float delta)
 		velocity.x = 0;
 	if (enable_gravity)
 		velocity.y += GRAVITY * delta;
-	position += velocity*delta;
+	position += velocity * delta;
 
 	if (position.y >= FLOOR_Y)
-		position.y = 0;
+	{
+		position.y = FLOOR_Y;
+		velocity.y = 0;
+	}
 	if (position.x <= 0)
 		position.x = 0;
 	if (position.x >= getwidth())
@@ -83,6 +85,7 @@ void Charactor::on_render()
 	if (!current_animation || (is_invulnerable && !is_bilnk_visible))return;
 	is_facing_left ? current_animation->left.on_render()
 		: current_animation->right.on_render();
+
 }
 
 void Charactor::switch_state(const std::string& id)
@@ -91,7 +94,7 @@ void Charactor::switch_state(const std::string& id)
 }
 void Charactor::set_animation(const std::string& id)
 {
-	current_animation = animation_pool[id];
+	current_animation = &animation_pool[id];
 	current_animation->left.reset();
 	current_animation->right.reset();
 }

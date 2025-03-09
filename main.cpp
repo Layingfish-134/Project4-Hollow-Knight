@@ -1,6 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include"util.h"
 #include"resourcesmanager.h"
+#include"collisionmanager.h"
+#include"charactormanager.h"
 
 #include<graphics.h>
 #include<chrono>
@@ -44,13 +46,14 @@ int main()
 
 	const nanoseconds frame_duration(1000000000/144);
 	steady_clock::time_point last_tick = steady_clock::now();
-
+	play_audio(_T("bgm"), true);
 	while (!is_quitted)
 	{
-
+		
 		while (peekmessage(&msg))
 		{
 
+			CharactorManager::instance()->get_player()->on_input(msg);
 
 		}
 		//处理消息
@@ -58,12 +61,16 @@ int main()
 		steady_clock::time_point frame_start = steady_clock::now();
 		duration<float> delta = duration<float>(frame_start - last_tick);
 
+		CharactorManager::instance()->get_player()->on_update(delta.count());
+		CollisionManager::instance()->process_collision();
 
 		//处理更新
 		setbkcolor(RGB(0, 0, 0));
 		cleardevice();
 
 		draw_background();
+		CharactorManager::instance()->get_player()->on_render();
+		CollisionManager::instance()->on_debug_render();
 
 		//处理绘图
 		FlushBatchDraw();

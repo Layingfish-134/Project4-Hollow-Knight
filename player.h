@@ -3,15 +3,15 @@
 class Player : public Charactor
 {
 public:
-	Player()=default;
-	~Player()=default;
+	Player();
+	~Player();
 
 	void on_update(float delta) override;
 	void on_render()override;
 	void on_input(const ExMessage& msg) override;
 
 	void on_hurt()override;
-private:
+public:
 	enum class AttackDir {
 		Up,Down,Left,Right
 	};
@@ -24,10 +24,6 @@ public:
 	{
 		return is_rolling;
 	}
-	bool can_roll()const
-	{
-		return (!is_rolling && is_roll_cd_comp && is_roll_keydown);
-	}
 	void set_attacking(bool flag)
 	{
 		is_attacking = flag;
@@ -38,11 +34,15 @@ public:
 	}
 	bool can_roll()const
 	{
-		return (!is_attacking && is_attack_cd_comp && is_attack_keydown);
+		return (!is_rolling && is_roll_cd_comp && is_roll_keydown);
 	}
 	bool can_jump() const
 	{
 		return (is_on_floor() && is_jump_keydown);
+	}
+	bool can_attack()const
+	{
+		return (is_attack_cd_comp&&!is_attacking&&is_attack_keydown);
 	}
 	int get_move_axis()const
 	{
@@ -61,11 +61,11 @@ private:
 	void update_attack_dir(int x, int y);
 private:
 	bool is_rolling = false;
-	bool is_roll_cd_comp = false;
+	bool is_roll_cd_comp = true;
 	Timer timer_roll_cd;
 
 	bool is_attacking = false;
-	bool is_attack_cd_comp = false;
+	bool is_attack_cd_comp = true;
 	Timer timer_attack_cd;
 
 	bool is_jump_keydown = false;

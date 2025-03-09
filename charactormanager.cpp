@@ -35,5 +35,5 @@ CharactorManager::CharactorManager()
 CharactorManager::~CharactorManager()
 {
 	delete player;
-	delete enemy;
+	//delete enemy;
 }

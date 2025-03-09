@@ -67,7 +67,7 @@ private:
 class PlayerRollState : public StateNode
 {
 public:
-	PlayerRollState() = default;
+	PlayerRollState();
 	~PlayerRollState() = default;
 
 	 void on_enter() override;
