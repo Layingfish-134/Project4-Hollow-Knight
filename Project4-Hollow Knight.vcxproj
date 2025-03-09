@@ -130,9 +130,11 @@
     <ClInclude Include="animation.h" />
     <ClInclude Include="atlas.h" />
     <ClInclude Include="charactor.h" />
+    <ClInclude Include="charactormanager.h" />
     <ClInclude Include="collisionlayer.h" />
     <ClInclude Include="collisionmanager.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="player_state_nodes.h" />
     <ClInclude Include="resourcesmanager.h" />
     <ClInclude Include="statemachine.h" />
     <ClInclude Include="statenode.h" />
@@ -142,9 +144,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charactor.cpp" />
+    <ClCompile Include="charactormanager.cpp" />
     <ClCompile Include="collisionbox.h" />
     <ClCompile Include="collisionmanager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="resourcesmanager.cpp" />
     <ClCompile Include="statemachine.cpp" />
   </ItemGroup>

@@ -22,6 +22,12 @@
     <Filter Include="源文件\manager">
       <UniqueIdentifier>{27ac1404-2001-4609-808a-12a55fc983fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\State">
+      <UniqueIdentifier>{a5b3de36-2f16-4ba4-846a-4157913e1375}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Manager">
+      <UniqueIdentifier>{509fc69e-112d-4f59-a768-4b6612375e92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2.h">
@@ -39,26 +45,32 @@
     <ClInclude Include="animation.h">
       <Filter>头文件\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="resourcesmanager.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="collisionlayer.h">
       <Filter>头文件\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="collisionmanager.h">
-      <Filter>头文件\Collision</Filter>
-    </ClInclude>
-    <ClInclude Include="statenode.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="statemachine.h">
-      <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="charactor.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="player.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="player_state_nodes.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="statemachine.h">
+      <Filter>头文件\State</Filter>
+    </ClInclude>
+    <ClInclude Include="statenode.h">
+      <Filter>头文件\State</Filter>
+    </ClInclude>
+    <ClInclude Include="resourcesmanager.h">
+      <Filter>头文件\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="collisionmanager.h">
+      <Filter>头文件\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="charactormanager.h">
+      <Filter>头文件\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +90,12 @@
       <Filter>源文件\manager</Filter>
     </ClCompile>
     <ClCompile Include="collisionmanager.cpp">
+      <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="charactormanager.cpp">
       <Filter>源文件\manager</Filter>
     </ClCompile>
   </ItemGroup>

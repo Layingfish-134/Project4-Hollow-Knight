@@ -32,7 +32,7 @@ public:
 	{
 		is_attacking = flag;
 	}
-	bool get_aattacking()const
+	bool get_attacking()const
 	{
 		return is_attacking;
 	}
@@ -55,7 +55,7 @@ public:
 public:
 	void on_jump();
 	void on_land();
-	void on_rool();
+	void on_roll();
 	void on_attack();
 private:
 	void update_attack_dir(int x, int y);
