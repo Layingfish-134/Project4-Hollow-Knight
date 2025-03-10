@@ -10,7 +10,7 @@ Charactor::Charactor()
 
 	timer_invulnerable_status.set_wait_time(1.0f);
 	timer_invulnerable_status.set_oneshot(true);
-	timer_invulnerable_status.set_callback(
+	timer_invulnerable_status.set_on_timeout(
 		[&]()
 		{
 			is_invulnerable = false;
@@ -19,7 +19,7 @@ Charactor::Charactor()
 
 	timer_invulnerable_blink.set_wait_time(0.075f);
 	timer_invulnerable_blink.set_oneshot(false);
-	timer_invulnerable_blink.set_callback(
+	timer_invulnerable_blink.set_on_timeout(
 		[&]()
 		{
 			is_bilnk_visible = !is_bilnk_visible;

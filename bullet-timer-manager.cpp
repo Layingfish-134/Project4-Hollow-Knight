@@ -34,7 +34,7 @@ void BulletTimeManager::set_status(Status status)
 	this->status = status;
 
 }
-float BulletTimeManager::on_update(int delta)
+float BulletTimeManager::on_update(float delta)
 {
 	float delta_progress = delta * SPEED_PROGRESS;
 	progress += delta_progress * (status == Status::Entering ? 1 : -1);

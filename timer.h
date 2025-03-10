@@ -19,9 +19,9 @@ public:
 		one_shot = flag;
 	}
 
-	void set_wait_time(float ms)
+	void set_wait_time(float val)
 	{
-		wait_time = ms;
+		wait_time = val;
 	}
 
 	void pause()
@@ -34,9 +34,9 @@ public:
 		is_paused = false;
 	}
 
-	void set_callback(std::function<void()>callback)
+	void set_on_timeout(std::function<void()>on_timeout)
 	{
-		this->on_timeout = callback;
+		this->on_timeout = on_timeout;
 		//std::cout << "ji shi qi hui diao chu shi\n";
 	}
 public:
@@ -49,9 +49,9 @@ public:
 
 		if (pass_time >= wait_time)
 		{
-			bool can_shot = (!one_shot || (one_shot && !is_shotted )&& on_timeout);
+			bool can_shot = (!one_shot || (one_shot && !is_shotted ));
 			is_shotted = true;
-			if (can_shot)
+			if (can_shot&&on_timeout)
 			{
 				//std::cout << "计时器回调函数调用" << std::endl;
 				on_timeout();

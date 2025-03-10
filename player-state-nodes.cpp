@@ -7,7 +7,7 @@ PlayerAttackState::PlayerAttackState()
 {
 	timer.set_wait_time(0.3f);
 	timer.set_oneshot(true);
-	timer.set_callback(
+	timer.set_on_timeout(
 		[&]()
 		{
 			Player* player = (Player*)CharactorManager::instance()->get_player();
@@ -91,7 +91,7 @@ PlayerDeadState::PlayerDeadState()
 {
 	timer.set_wait_time(2.0f);
 	timer.set_oneshot(true);
-	timer.set_callback([&]()
+	timer.set_on_timeout([&]()
 		{
 			MessageBox(GetHWnd(), _T("OH!!!!"), _T("游戏失败"), MB_OK);
 			exit(0);
@@ -179,7 +179,7 @@ PlayerRollState::PlayerRollState()
 {
 	timer.set_wait_time(0.35f);
 	timer.set_oneshot(true);
-	timer.set_callback(
+	timer.set_on_timeout(
 		[&]()
 		{
 			Player* player = (Player*)CharactorManager::instance()->get_player();

@@ -33,7 +33,7 @@ Player::Player() {
 
 	timer_attack_cd.set_wait_time(CD_ATTACK);
 	timer_attack_cd.set_oneshot(true);
-	timer_attack_cd.set_callback([&]()
+	timer_attack_cd.set_on_timeout([&]()
 		{
 			is_attack_cd_comp = true;
 		}
@@ -41,7 +41,7 @@ Player::Player() {
 
 	timer_roll_cd.set_wait_time(CD_ROLL);
 	timer_roll_cd.set_oneshot(true);
-	timer_roll_cd.set_callback([&]()
+	timer_roll_cd.set_on_timeout([&]()
 		{
 			is_roll_cd_comp = true;
 		//	std::cout << "roll Cd 调用回调" << std::endl;
@@ -242,6 +242,7 @@ void Player::on_update(float delta)
 	{
 		current_slash_animation->set_position(get_logic_center());
 		current_slash_animation->on_update(delta);
+		//std::cout << current_slash_animation->get_frame_num()<<std::endl;
 	}
 
 	//std::cout << is_jump_vfx_visible << std::endl;

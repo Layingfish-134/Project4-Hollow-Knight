@@ -12,12 +12,12 @@ public:
 	Animation()
 	{
 		timer.set_oneshot(false);
-		std::cout << "动画初始化" << std::endl;
+		//std::cout << "动画初始化" << std::endl;
 		
-		timer.set_callback([&]()
+		timer.set_on_timeout([&]()
 			{
 				idx_frame++;
-				std::cout <<idx_frame << std::endl;
+			//	std::cout <<idx_frame << std::endl;
 
 				if (idx_frame >= frame_list.size())
 				{
@@ -109,7 +109,7 @@ public:  //debug使用
 		return frame_list.size();
 	}
 public:
-	void on_update(int delta)
+	void on_update(float delta)
 	{
 		timer.on_update(delta);
 	//	std::cout << "动画计时器更新了" << std::endl;

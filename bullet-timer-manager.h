@@ -13,7 +13,7 @@ public:
 	void post_progress();
 	void set_status(Status status);
 
-	float on_update(int delta);
+	float on_update(float delta);
 private:
 	static BulletTimeManager* manager;
 
