@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include"charactormanager.h"
 #include"player.h"
+#include"bullet-timer-manager.h"
 
 
 CharactorManager* CharactorManager::manager = nullptr;
@@ -23,6 +24,7 @@ void CharactorManager::on_update(float delta)
 }
 void CharactorManager::on_render()
 {
+	BulletTimeManager::instance()->post_progress();
 	player->on_render();
 	//
 }

@@ -3,6 +3,7 @@
 #include"resourcesmanager.h"
 #include"collisionmanager.h"
 #include"charactormanager.h"
+#include"bullet-timer-manager.h"
 
 #include<graphics.h>
 #include<chrono>
@@ -61,7 +62,9 @@ int main()
 		steady_clock::time_point frame_start = steady_clock::now();
 		duration<float> delta = duration<float>(frame_start - last_tick);
 
-		CharactorManager::instance()->get_player()->on_update(delta.count());
+		//float scaled_delta = BulletTimeManager::instance()->on_update(delta.count());
+		//CharactorManager::instance()->get_player()->on_update(scaled_delta);
+		CharactorManager::instance()->on_update(delta.count());
 		CollisionManager::instance()->process_collision();
 
 		//处理更新
@@ -69,7 +72,7 @@ int main()
 		cleardevice();
 
 		draw_background();
-		CharactorManager::instance()->get_player()->on_render();
+		CharactorManager::instance()->on_render();
 		CollisionManager::instance()->on_debug_render();
 
 		//处理绘图

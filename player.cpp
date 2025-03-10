@@ -2,13 +2,16 @@
 #include"player.h"
 #include"resourcesmanager.h"
 #include"player_state_nodes.h"
+#include"bullet-timer-manager.h"
 
 #include<cmath>
+#include<iostream>
+
 
 Player::Player() {
 	is_facing_left = false;
 	//position = { 250,200 };
-	position = { 250,400 };
+	position = { 250,200 };
 	velocity = { 0,0 };
 	logic_height = 120;
 
@@ -41,6 +44,7 @@ Player::Player() {
 	timer_roll_cd.set_callback([&]()
 		{
 			is_roll_cd_comp = true;
+		//	std::cout << "roll Cd 调用回调" << std::endl;
 		}
 	);
 	{
@@ -214,6 +218,8 @@ Player::Player() {
 
 		state_machine.on_entry("idle");
 	}
+
+	//std::cout << is_jump_vfx_visible << std::endl;
 }
 
 Player::~Player() = default;
@@ -237,6 +243,9 @@ void Player::on_update(float delta)
 		current_slash_animation->set_position(get_logic_center());
 		current_slash_animation->on_update(delta);
 	}
+
+	//std::cout << is_jump_vfx_visible << std::endl;
+
 
 	Charactor::on_update(delta);
 }
@@ -314,9 +323,13 @@ void Player::on_input(const ExMessage& msg)
 		is_attack_keydown = false;
 		break;
 	case WM_RBUTTONDOWN:
+		play_audio(_T("bullet_time"), false);
+		BulletTimeManager::instance()->set_status(BulletTimeManager::Status::Entering);
 		//进入子弹时间
 		break;
 	case WM_RBUTTONUP:
+		stop_audio(_T("bullet_time"));
+		BulletTimeManager::instance()->set_status(BulletTimeManager::Status::Exiting);
 		//退出子弹时间
 		break;
 	}

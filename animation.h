@@ -12,10 +12,13 @@ public:
 	Animation()
 	{
 		timer.set_oneshot(false);
+		std::cout << "动画初始化" << std::endl;
+		
 		timer.set_callback([&]()
 			{
 				idx_frame++;
-				std::cout << "动画帧更新调用" << std::endl;
+				std::cout <<idx_frame << std::endl;
+
 				if (idx_frame >= frame_list.size())
 				{
 					idx_frame = is_loop ? 0 : frame_list.size() - 1;
@@ -26,6 +29,8 @@ public:
 				}
 			}
 		);
+		
+		
 	}
 	~Animation()=default;
 public:
@@ -97,10 +102,17 @@ public:
 			frame_list.emplace_back(rect, img);
 		}
 	}
+
+public:  //debug使用
+	int get_frame_num()
+	{
+		return frame_list.size();
+	}
 public:
 	void on_update(int delta)
 	{
 		timer.on_update(delta);
+	//	std::cout << "动画计时器更新了" << std::endl;
 	}
 
 	void on_render()

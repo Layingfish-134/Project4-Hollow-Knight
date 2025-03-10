@@ -74,17 +74,18 @@ void Charactor::on_update(float delta)
 
 	if (!current_animation) return;
 
-	Animation& animation = is_facing_left ? current_animation->left
-		: current_animation->right;
+	Animation& animation = (is_facing_left ? current_animation->left
+		: current_animation->right);
 	animation.on_update(delta);
+	//std::cout << animation.get_frame_num() << std::endl;
 	animation.set_position(position);
 }
 
 void Charactor::on_render()
 {
 	if (!current_animation || (is_invulnerable && !is_bilnk_visible))return;
-	is_facing_left ? current_animation->left.on_render()
-		: current_animation->right.on_render();
+	(is_facing_left ? current_animation->left
+		: current_animation->right).on_render();
 
 }
 

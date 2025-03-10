@@ -72,6 +72,9 @@
     <ClInclude Include="charactormanager.h">
       <Filter>头文件\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="bullet-timer-manager.h">
+      <Filter>头文件\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -100,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="player-state-nodes.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet-timer-manager.cpp">
+      <Filter>源文件\manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

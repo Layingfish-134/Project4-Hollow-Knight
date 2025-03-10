@@ -1,5 +1,7 @@
 #pragma once
 #include<functional>
+#include<iostream>
+
 class Timer
 {
 public:
@@ -35,6 +37,7 @@ public:
 	void set_callback(std::function<void()>callback)
 	{
 		this->on_timeout = callback;
+		//std::cout << "ji shi qi hui diao chu shi\n";
 	}
 public:
 	void on_update(float delta)
@@ -46,10 +49,11 @@ public:
 
 		if (pass_time >= wait_time)
 		{
-			bool can_shot = !one_shot || (one_shot && !is_shotted) && on_timeout;
+			bool can_shot = (!one_shot || (one_shot && !is_shotted )&& on_timeout);
 			is_shotted = true;
 			if (can_shot)
 			{
+				//std::cout << "计时器回调函数调用" << std::endl;
 				on_timeout();
 			}
 			pass_time -= wait_time;
