@@ -55,9 +55,9 @@ public:
 		return sqrt(this->x * this->x + this->y * this->y);
 	}
 
-	Vector2 normalize()
+    Vector2 normalize() 
 	{
-		float length =this->length();
+		float length = this->length();
 		if (length == 0)
 			return Vector2(0, 0);
 		return Vector2(x / length, y / length);

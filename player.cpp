@@ -36,6 +36,7 @@ Player::Player() {
 	timer_attack_cd.set_on_timeout([&]()
 		{
 			is_attack_cd_comp = true;
+			//std::cout << "攻击计时器回调" << std::endl;
 		}
 	);
 
@@ -366,8 +367,8 @@ void Player::on_roll()
 }
 void Player::on_attack()
 {
-	timer_attack_cd.reset();
 	is_attack_cd_comp = false;
+	timer_attack_cd.reset();
 	switch (attack_dir)
 	{
 	case Player::AttackDir::Up:

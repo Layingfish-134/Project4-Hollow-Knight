@@ -2,7 +2,7 @@
 #include"charactormanager.h"
 #include"player.h"
 #include"bullet-timer-manager.h"
-
+#include"enemy.h"
 
 CharactorManager* CharactorManager::manager = nullptr;
 
@@ -15,27 +15,27 @@ CharactorManager* CharactorManager::instance()
 void CharactorManager::on_input(ExMessage& msg)
 {
 	player->on_input(msg);
-	//
 }
 void CharactorManager::on_update(float delta)
 {
 	player->on_update(delta);
-	//
+	enemy->on_update(delta);
 }
 void CharactorManager::on_render()
 {
+	enemy->on_render();
 	BulletTimeManager::instance()->post_progress();
 	player->on_render();
-	//
+	
 }
 
 CharactorManager::CharactorManager()
 {
 	player = new Player();
-	//
+	enemy = new Enemy();
 }
 CharactorManager::~CharactorManager()
 {
 	delete player;
-	//delete enemy;
+	delete enemy;
 }

@@ -129,31 +129,39 @@
   <ItemGroup>
     <ClInclude Include="animation.h" />
     <ClInclude Include="atlas.h" />
+    <ClInclude Include="barb.h" />
     <ClInclude Include="bullet-timer-manager.h" />
     <ClInclude Include="charactor.h" />
     <ClInclude Include="charactormanager.h" />
     <ClInclude Include="collisionlayer.h" />
     <ClInclude Include="collisionmanager.h" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="enemy_state_nodes.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="player_state_nodes.h" />
     <ClInclude Include="resourcesmanager.h" />
     <ClInclude Include="statemachine.h" />
     <ClInclude Include="statenode.h" />
+    <ClInclude Include="sword.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="barb.cpp" />
     <ClCompile Include="bullet-timer-manager.cpp" />
     <ClCompile Include="charactor.cpp" />
     <ClCompile Include="charactormanager.cpp" />
     <ClCompile Include="collisionbox.h" />
     <ClCompile Include="collisionmanager.cpp" />
+    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemy_state_nodes.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player-state-nodes.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="resourcesmanager.cpp" />
     <ClCompile Include="statemachine.cpp" />
+    <ClCompile Include="sword.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

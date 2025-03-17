@@ -28,6 +28,18 @@
     <Filter Include="头文件\Manager">
       <UniqueIdentifier>{509fc69e-112d-4f59-a768-4b6612375e92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Player">
+      <UniqueIdentifier>{97307bea-75fb-45fc-8e1a-f6f4344b95f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Enemy">
+      <UniqueIdentifier>{7774510e-b32e-4b3b-a444-3ef384d000bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Enemy">
+      <UniqueIdentifier>{7221af6f-a229-4eaf-a79a-af8be7b6d91e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Player">
+      <UniqueIdentifier>{11bc217b-71b1-42bf-8c94-e0655980845a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector2.h">
@@ -48,15 +60,6 @@
     <ClInclude Include="collisionlayer.h">
       <Filter>头文件\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="charactor.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="player.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="player_state_nodes.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="statemachine.h">
       <Filter>头文件\State</Filter>
     </ClInclude>
@@ -74,6 +77,27 @@
     </ClInclude>
     <ClInclude Include="bullet-timer-manager.h">
       <Filter>头文件\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="sword.h">
+      <Filter>头文件\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="charactor.h">
+      <Filter>头文件\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>头文件\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="player_state_nodes.h">
+      <Filter>头文件\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="barb.h">
+      <Filter>头文件\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>头文件\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy_state_nodes.h">
+      <Filter>头文件\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -95,17 +119,29 @@
     <ClCompile Include="collisionmanager.cpp">
       <Filter>源文件\manager</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="charactormanager.cpp">
       <Filter>源文件\manager</Filter>
     </ClCompile>
-    <ClCompile Include="player-state-nodes.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="bullet-timer-manager.cpp">
       <Filter>源文件\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>源文件\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="player-state-nodes.cpp">
+      <Filter>源文件\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="sword.cpp">
+      <Filter>源文件\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="barb.cpp">
+      <Filter>源文件\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>源文件\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy_state_nodes.cpp">
+      <Filter>源文件\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

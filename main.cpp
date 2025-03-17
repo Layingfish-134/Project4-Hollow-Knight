@@ -22,6 +22,17 @@ static inline void draw_background()
 	putimage_ex(img_background, &rect_dst);
 }
 
+static void draw_remain_hp()
+{
+	static IMAGE* img_ui_heart = ResourcesManager::instance()->find_image("ui_heart");
+	Rect rect_dst = { 0,10,img_ui_heart->getwidth(),img_ui_heart->getheight() };
+	for (int i = 0; i < CharactorManager::instance()->get_player()->get_hp(); i++)
+	{
+		rect_dst.x = 10 + i * 40;
+		putimage_ex(img_ui_heart, &rect_dst);
+	}
+
+}
 
 int main()
 {
@@ -44,13 +55,14 @@ int main()
 		_stprintf_s(error_msg, _T("%s 无法被加载"), id);
 		MessageBox(hwnd, error_msg, _T("资源加载失败"), MB_OK | MB_ICONERROR);
 	}
+	play_audio(_T("bgm"), true);
 
 	const nanoseconds frame_duration(1000000000/144);
 	steady_clock::time_point last_tick = steady_clock::now();
-	play_audio(_T("bgm"), true);
+
 	while (!is_quitted)
 	{
-		
+	
 		while (peekmessage(&msg))
 		{
 
@@ -72,9 +84,10 @@ int main()
 		cleardevice();
 
 		draw_background();
+
 		CharactorManager::instance()->on_render();
 		CollisionManager::instance()->on_debug_render();
-
+		draw_remain_hp();
 		//处理绘图
 		FlushBatchDraw();
 		

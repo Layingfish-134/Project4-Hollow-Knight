@@ -45,7 +45,7 @@ void PlayerAttackState::on_update(float delta)
 	Player* player = (Player*)CharactorManager::instance()->get_player();
 	if (player->get_hp() <= 0)
 		player->switch_state("dead");
-	else if (player->get_attacking())
+	else if (!player->get_attacking())
 	{
 		if (player->get_velocity().y > 0)
 			player->switch_state("fall");

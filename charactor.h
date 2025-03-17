@@ -62,7 +62,7 @@ public:
 		position = pos;
 	}
 
-	const Vector2& get_position()const
+	const Vector2& get_position() const
 	{
 		return position;
 	}
