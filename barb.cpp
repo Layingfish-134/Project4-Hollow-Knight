@@ -40,8 +40,11 @@ Barb::Barb()
 	timer_idle.set_on_timeout(
 		[&]()
 		{
-			stage = Stage::Aim;
-			base_position = current_position;
+			if (stage == Stage::Idle)
+			{
+				stage = Stage::Aim;
+				base_position = current_position;
+			}
 		}
 	);
 

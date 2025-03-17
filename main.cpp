@@ -66,7 +66,7 @@ int main()
 		while (peekmessage(&msg))
 		{
 
-			CharactorManager::instance()->get_player()->on_input(msg);
+			CharactorManager::instance()->on_input(msg);
 
 		}
 		//处理消息
@@ -75,7 +75,8 @@ int main()
 		duration<float> delta = duration<float>(frame_start - last_tick);
 
 		float scaled_delta = BulletTimeManager::instance()->on_update(delta.count());
-		CharactorManager::instance()->get_player()->on_update(scaled_delta);
+		CharactorManager::instance()->on_update(scaled_delta);
+		//CharactorManager::instance()->get_player()->on_update(scaled_delta);
 		//CharactorManager::instance()->on_update(delta.count());
 		CollisionManager::instance()->process_collision();
 
@@ -86,6 +87,7 @@ int main()
 		draw_background();
 
 		CharactorManager::instance()->on_render();
+		//CharactorManager::instance()->get_player()->on_render();
 		CollisionManager::instance()->on_debug_render();
 		draw_remain_hp();
 		//处理绘图

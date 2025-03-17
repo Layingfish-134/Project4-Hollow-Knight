@@ -32,7 +32,7 @@ Enemy::Enemy()
 	collision_box_silk->set_layer_src(CollisionLayer::None);
 	collision_box_silk->set_layer_dst(CollisionLayer::Player);
 	collision_box_silk->set_enabled(false);
-
+	
 	{
 		{
 			AnimationGroup& animation_aim = animation_pool["aim"];
@@ -201,37 +201,41 @@ Enemy::Enemy()
 			animaion_throw_sword_right.add_frame(ResourcesManager::instance()->find_atlas("enemy_throw_sword_right"));
 		}
 	}
+	
+	
 	{
+		
 		animation_silk.set_interval(0.1f);
 		animation_silk.set_loop(false);
 		animation_silk.set_anchor_mode(Animation::AnchorMode::Centered);
 		animation_silk.add_frame(ResourcesManager::instance()->find_atlas("silk"));
-
+		
 		Animation& animation_dash_in_air_left = animation_dash_in_air_vfx.left;
 		animation_dash_in_air_left.set_interval(0.1f);
 		animation_dash_in_air_left.set_loop(false);
 		animation_dash_in_air_left.set_anchor_mode(Animation::AnchorMode::Centered);
-		animation_dash_in_air_left.add_frame(ResourcesManager::instance()->find_atlas("enenmy_vfx_dash_in_air_left"));
+		animation_dash_in_air_left.add_frame(ResourcesManager::instance()->find_atlas("enemy_vfx_dash_in_air_left"));
 
 		Animation& animation_dash_in_air_right = animation_dash_in_air_vfx.right;
 		animation_dash_in_air_right.set_interval(0.1f);
 		animation_dash_in_air_right.set_loop(false);
 		animation_dash_in_air_right.set_anchor_mode(Animation::AnchorMode::Centered);
-		animation_dash_in_air_right.add_frame(ResourcesManager::instance()->find_atlas("enenmy_vfx_dash_in_air_right"));
-
+		animation_dash_in_air_right.add_frame(ResourcesManager::instance()->find_atlas("enemy_vfx_dash_in_air_right"));
+		
 		Animation& animation_dash_on_floor_left = animation_dash_on_floor_vfx.left;
 		animation_dash_on_floor_left.set_interval(0.1f);
 		animation_dash_on_floor_left.set_loop(false);
 		animation_dash_on_floor_left.set_anchor_mode(Animation::AnchorMode::Bottomcentered);
-		animation_dash_on_floor_left.add_frame(ResourcesManager::instance()->find_atlas("enenmy_vfx_dash_on_floor_left"));
+		animation_dash_on_floor_left.add_frame(ResourcesManager::instance()->find_atlas("enemy_vfx_dash_on_floor_left"));
 
 		Animation& animation_dash_on_floor_right = animation_dash_on_floor_vfx.right;
 		animation_dash_on_floor_right.set_interval(0.1f);
 		animation_dash_on_floor_right.set_loop(false);
 		animation_dash_on_floor_right.set_anchor_mode(Animation::AnchorMode::Bottomcentered);
-		animation_dash_on_floor_right.add_frame(ResourcesManager::instance()->find_atlas("enenmy_vfx_dash_on_floor_right"));
-
+        animation_dash_on_floor_right.add_frame(ResourcesManager::instance()->find_atlas("enemy_vfx_dash_on_floor_right"));
+		
 	}
+	
 	{
 		state_machine.register_state("aim", new EnemyAimNode);
 		state_machine.register_state("dash_in_air", new EnemyDashinAirNode);
@@ -248,6 +252,7 @@ Enemy::Enemy()
 
 		state_machine.on_entry("idle"); 
 	}
+	
 }
 Enemy::~Enemy()
 {
@@ -366,6 +371,7 @@ void Enemy::throw_swords()
 void Enemy::on_throw_silk()
 {
 	animation_silk.reset();
+	//collision_box_silk->set_enabled(true);
 }
 void Enemy::on_dash()
 {

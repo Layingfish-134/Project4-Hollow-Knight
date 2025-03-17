@@ -45,7 +45,7 @@ public:
 private:
 	Vector2 position;
 	Vector2 size;
-	bool enabled=false;
+	bool enabled=true;
 	std::function<void()> on_collide=nullptr;
 	CollisionLayer layer_src = CollisionLayer::None;
 	CollisionLayer layer_dst = CollisionLayer::None;

@@ -18,7 +18,7 @@ Sword::Sword(const Vector2& position, bool move_left)
 	collision_box->set_size({195,10});
 
 	this->position = position;
-	this->is_vaild = true;
+	//this->is_vaild = true;
 	this->velocity.x = move_left ? -SPEED_MOVE : SPEED_MOVE;
 	this->velocity.y = 0;
 
